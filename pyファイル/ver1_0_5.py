@@ -9,7 +9,7 @@ def parse_version(v):
 enter_boot = "" 
 enter_ai = ""
 this_py_version = "1.0.5"
-recommended_py_version = "1.0.5"
+recommended_py_version = "1.0.6"
 user_finish = ["終了", "特にない", "特になし", "もう大丈夫"]
 ai_mode = "basic"
 
