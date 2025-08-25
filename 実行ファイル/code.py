@@ -9,6 +9,7 @@ import json
 def parse_version(v):
     return tuple(map(int, v.split(".")))
 
+
 enter_boot = "" 
 enter_ai = ""
 this_py_version = "1.0.7"
@@ -52,7 +53,7 @@ def run():
     time.sleep(0.2)  # 起動してる感だけ出す
 
 def progress_bar(duration=2.0, steps=40):
-    print("ver1_0_7.pyを読み込み中..." )
+    print("code.pyを読み込み中..." )
     sys.stdout.write("[")  # 左枠
     sys.stdout.flush()
     for i in range(steps):
@@ -118,8 +119,8 @@ else:
 while True:
     if ai_mode == "basic":
         user_please = input("知りたいコード: ").strip().lower()
-        if user_please in explanationinput:
-            for line in explanationinput[user_please]:
+        if user_please in normalinput:
+            for line in normalinput[user_please]:
                 print(line)
         elif user_please == "モード切り替え":
             ai_mode = ai_mode_switch()
@@ -138,7 +139,7 @@ while True:
     if ai_mode == "detailed":
         user_explanation = input("説明が欲しいコード: ").strip().lower()
         if user_explanation in explanationinput:
-            for line in explanationinput[user_please]:
+            for line in explanationinput[user_explanation]:
                 print(line)
         elif user_explanation in user_finish:
             print("わかりました。では困ったらまた呼び出してください!")
