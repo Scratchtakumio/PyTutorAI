@@ -1,0 +1,57 @@
+{ 
+  "math": [
+    "mathモジュールは、数学関連の関数や定数を提供します。)",
+    "例: import math",
+    "使い方： import math"
+  ],
+  "datetime": [
+    "datetimeモジュールは、日付や時刻を扱うためのクラスや関数を提供します。",
+    "例: import datetime",
+    "使い方: import datetime"
+  ],
+  "random": [
+    "randomモジュールは、ランダムな数字を生成するための関数を提供します。",
+    "例: import random",
+    "使い方: import random"
+  ],
+  "os": [
+    "osモジュールは、オペレーティングシステム(要はパソコン本体)との対話を行うための機能を提供します。",
+    "例: import os",
+    "使い方: import os"
+  ],
+  "sys": [
+    "sysモジュールは、Pythonの実行環境に関する情報を提供します。",
+    "例: import sys",
+    "使い方: import sys"
+  ],
+  "re": [
+    "reモジュールは、正規表現を使用して文字列の処理を行うための関数を提供します。",
+    "例: import re",
+    "使い方: import re"
+  ],
+  "json": [
+    "jsonモジュールは、JSON形式のデータを扱うための関数を提供します。",
+    "例: import json",
+    "使い方: import json"
+  ],
+  "time": [
+    "timeモジュールは、時間に関する機能を提供します。",
+    "例: import time",
+    "使い方: import time"
+  ],
+  "collections": [
+    "collectionsモジュールは、データ構造を拡張するための関数を提供します。",
+    "例: import collections",
+    "使い方： import collections"
+  ],
+  "itertools": [
+    "itertoolsモジュールは、AIの操作を強化するための関数を提供します。",
+    "例: import itertools",
+    "使い方： import itertools"
+  ],
+  "subprocess": [
+    "subprocessモジュールは、外部プログラムを実行するための関数を提供します。",
+    "例: import subprocess",
+    "使い方： import subprocess"
+  ]
+}
