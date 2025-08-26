@@ -73,3 +73,6 @@ ver.1.0.8
 	help -e help.pyの終了
 - code.pyからhelp.pyを呼び出せるよう変更。「help」と入力するだけでhelp.pyが別ウィンドウで起動する。
 - 使用方法を書いたテキストファイルを更新
+
+ver.1.0.81 パッチノート
+- 新たにtry・except・classに対応
