@@ -61,3 +61,15 @@ ver.1.0.71 パッチノート
 	原因:explanationinput[user_please]: の[]の部分がuser_explanationsになっていない
 - 詳細説明モードでコードを入力しても説明が表示されないバグを修正
 	原因:jsonファイルの指定方法の間違い
+
+ver.1.0.8
+- help.pyおよびhelpコマンドを作成。help.pyではhelpコマンドを使ったアプリの使用方法や登録されているキーワードなどを
+確認可能。
+	コマンド一覧：
+	help -u code.pyの使い方
+	help -k -n 基礎文法モードで登録されているキーワードの表示
+	help -k -m モジュールモードで登録されているキーワードの表示
+	help -c code.pyで使えるコマンドの表示
+	help -e help.pyの終了
+- code.pyからhelp.pyを呼び出せるよう変更。「help」と入力するだけでhelp.pyが別ウィンドウで起動する。
+- 使用方法を書いたテキストファイルを更新

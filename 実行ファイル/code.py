@@ -4,11 +4,7 @@ import time
 import sys
 import platform
 import json
-
-
-def parse_version(v):
-    return tuple(map(int, v.split(".")))
-
+import subprocess
 
 enter_boot = "" 
 enter_ai = ""
@@ -41,6 +37,12 @@ def ai_mode_switch():
     else:
         print("無効な入力です。デフォルトモードに設定します。")
         return "basic"
+
+def help_terminal():
+    try:
+        subprocess.Popen(['start', 'python', 'help.py'], shell=True)
+    except subprocess.CalledProcessError:
+        print("help.pyの起動に失敗しました。help.pyが削除または破損している可能性があります。")
 
 with open('C:\\Users\\takumi\\PyTutorAI\\実行ファイル\\input.json', 'r', encoding='utf-8') as f:
     normalinput = json.load(f)
@@ -122,17 +124,19 @@ while True:
         if user_please in normalinput:
             for line in normalinput[user_please]:
                 print(line)
+        elif user_please in user_finish:
+            print("わかりました。では困ったらまた呼び出してください!")
+            print("アプリを終了中...")
+            time.sleep(2)
+            sys.exit()
         elif user_please == "モード切り替え":
             ai_mode = ai_mode_switch()
         elif user_please == "version" or user_please == "-v":
             show_version()
         elif user_please == "version --detailed":
             show_version_detailed()
-        elif user_please in user_finish:
-            print("わかりました。では困ったらまた呼び出してください!")
-            print("アプリを終了中...")
-            time.sleep(2)
-            sys.exit()
+        elif user_please == "help":
+            help_terminal()
         else:
             print("そのコードまたは説明は用意されていません。お手数をおかけいたしますがご自分で検索をお願いいたします")
 
@@ -152,6 +156,8 @@ while True:
             show_version()
         elif user_explanation == "version --detailed":
             show_version_detailed()
+        elif user_explanation == "help":
+            help_terminal()
         else:
             print("そのコードまたは説明は用意されていません。お手数をおかけいたしますがご自分で検索をお願いいたします")
 
@@ -171,5 +177,7 @@ while True:
             show_version()
         elif user_module == "version --detailed":
             show_version_detailed()
+        elif user_module == "help":
+            help_terminal()
         else:
             print("そのモジュールは用意されていません。お手数をおかけいたしますがご自分で検索をお願いいたします")
