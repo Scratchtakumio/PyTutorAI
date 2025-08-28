@@ -5,17 +5,14 @@ import sys
 import platform
 import json
 import subprocess
-
-enter_boot = "" 
-enter_ai = ""
-this_py_version = "1.0.7"
-user_finish = ["終了", "特にない", "特になし", "もう大丈夫"]
-ai_mode = "basic" 
+from pathlib import Path
 
 def show_version():
+    this_py_version = "1.0.7"
     print(f"PytutorAI ver.{this_py_version}")
 
 def show_version_detailed():
+    this_py_version = "1.0.7"
     print(f"PytutorAI ver.{this_py_version}")
     print(f"Python Version: {sys.version}")
     print(f"OS: {platform.system()} {platform.release()} ({platform.architecture()[0]})")
@@ -44,36 +41,20 @@ def help_terminal():
     except subprocess.CalledProcessError:
         print("help.pyの起動に失敗しました。help.pyが削除または破損している可能性があります。")
 
-with open('C:\\Users\\takumi\\PyTutorAI\\実行ファイル\\input.json', 'r', encoding='utf-8') as f:
+base_path = Path(__file__).resolve().parent
+
+with open(base_path / 'input.json', 'r', encoding='utf-8') as f:
     normalinput = json.load(f)
-with open('C:\\Users\\takumi\\PyTutorAI\\実行ファイル\\explanationsinput.json', 'r', encoding='utf-8') as f:
+with open(base_path / 'explanationsinput.json', 'r', encoding='utf-8') as f:
     explanationinput = json.load(f)
-with open('C:\\Users\\takumi\\PyTutorAI\\実行ファイル\\moduleinput.json', 'r', encoding='utf-8') as f:
+with open(base_path / 'moduleinput.json', 'r', encoding='utf-8') as f:
     moduleinput = json.load(f)
 
 def run():
     time.sleep(0.2)  # 起動してる感だけ出す
 
-def progress_bar(duration=2.0, steps=40):
-    print("code.pyを読み込み中..." )
-    sys.stdout.write("[")  # 左枠
-    sys.stdout.flush()
-    for i in range(steps):
-        time.sleep(duration / steps)
-        sys.stdout.write("■")
-        sys.stdout.flush()
-    sys.stdout.write("]")  # 右枠
-    sys.stdout.flush()
-
-    percent = int((i + 1) / steps * 100)
-    print(f" {percent}%")
-    print("読み込み完了")
-
-run()
-progress_bar()
-
-def progress_bar(duration=2.0, steps=40):
-    print("バージョンを確認中...")
+def progress_bar(message,duration=2.0, steps=40):
+    print(message)
     sys.stdout.write("[")  # 左枠
     sys.stdout.flush()
     for i in range(steps):
@@ -86,29 +67,18 @@ def progress_bar(duration=2.0, steps=40):
     print(f" {percent}%")
 
 run()
-progress_bar()
-
-def progress_bar(duration=2.0, steps=40):
-    print("アプリを初期化中...")
-    sys.stdout.write("[")  # 左枠
-    sys.stdout.flush()
-    for i in range(steps):
-        time.sleep(duration / steps)
-        sys.stdout.write("■")
-        sys.stdout.flush()
-    sys.stdout.write("]")  # 右枠
-    sys.stdout.flush()
-
-    percent = int((i + 1) / steps * 100)
-    print(f" {percent}%")
-    print("アプリ初期化完了")
-
+progress_bar("application.pyを読みこみ中...")
 run()
-progress_bar()
+progress_bar("バージョンを確認中...")
+run()
+progress_bar("アプリを初期化中...")
+user_finish = ["終了", "特にない", "特になし", "もう大丈夫"]
+ai_mode = "basic" 
 
 print("アプリを起動中...")
 time.sleep(1.5)
 print("アプリが起動しました。続行するにはEnterキーを押してください...")
+enter_ai = ""
 enter_ai = input("")
 if enter_ai != "":
     print("Enter以外の入力が検知されました。アプリを終了します")
