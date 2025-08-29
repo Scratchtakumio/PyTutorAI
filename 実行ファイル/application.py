@@ -50,6 +50,28 @@ with open(base_path / 'explanationsinput.json', 'r', encoding='utf-8') as f:
 with open(base_path / 'moduleinput.json', 'r', encoding='utf-8') as f:
     moduleinput = json.load(f)
 
+def application_main(prompt_text, input_dict, user_finish_list):
+    user_input = input(prompt_text).strip().lower()
+    if user_input in input_dict:
+        for line in input_dict[user_input]:
+            print(line)
+    elif user_input in user_finish_list:
+        print("わかりました。では困ったらまた呼び出してください!")
+        print("アプリを終了中...")
+        time.sleep(2)
+        sys.exit()
+    elif user_input == "モード切り替え":
+        return ai_mode_switch()
+    elif user_input in ["version", "-v"]:
+        show_version()
+    elif user_input == "version --detailed":
+        show_version_detailed()
+    elif user_input == "help":
+        help_terminal()
+    else:
+        print("そのコードまたは説明は用意されていません。お手数をおかけいたしますがご自分で検索をお願いいたします")
+    return None
+
 def run():
     time.sleep(0.2)  # 起動してる感だけ出す
 
@@ -72,7 +94,7 @@ run()
 progress_bar("バージョンを確認中...")
 run()
 progress_bar("アプリを初期化中...")
-user_finish = ["終了", "特にない", "特になし", "もう大丈夫"]
+user_finish_list = ["終了", "特にない", "特になし", "もう大丈夫"]
 ai_mode = "basic" 
 
 print("アプリを起動中...")
@@ -90,64 +112,16 @@ else:
 
 while True:
     if ai_mode == "basic":
-        user_please = input("知りたいコード: ").strip().lower()
-        if user_please in normalinput:
-            for line in normalinput[user_please]:
-                print(line)
-        elif user_please in user_finish:
-            print("わかりました。では困ったらまた呼び出してください!")
-            print("アプリを終了中...")
-            time.sleep(2)
-            sys.exit()
-        elif user_please == "モード切り替え":
-            ai_mode = ai_mode_switch()
-        elif user_please == "version" or user_please == "-v":
-            show_version()
-        elif user_please == "version --detailed":
-            show_version_detailed()
-        elif user_please == "help":
-            help_terminal()
-        else:
-            print("そのコードまたは説明は用意されていません。お手数をおかけいたしますがご自分で検索をお願いいたします")
+        new_mode = application_main("知りたいコード: ", normalinput, user_finish_list)
+        if new_mode:
+            ai_mode = new_mode
 
     if ai_mode == "detailed":
-        user_explanation = input("説明が欲しいコード: ").strip().lower()
-        if user_explanation in explanationinput:
-            for line in explanationinput[user_explanation]:
-                print(line)
-        elif user_explanation in user_finish:
-            print("わかりました。では困ったらまた呼び出してください!")
-            print("アプリを終了中...")
-            time.sleep(2)
-            sys.exit()
-        elif user_explanation == "モード切り替え":
-            ai_mode = ai_mode_switch()
-        elif user_explanation == "version" or user_please == "-v":
-            show_version()
-        elif user_explanation == "version --detailed":
-            show_version_detailed()
-        elif user_explanation == "help":
-            help_terminal()
-        else:
-            print("そのコードまたは説明は用意されていません。お手数をおかけいたしますがご自分で検索をお願いいたします")
+        new_mode = application_main("説明が欲しいコード: ", explanationinput, user_finish_list)
+        if new_mode:
+            ai_mode = new_mode
 
     if ai_mode == "module":
-        user_module = input("知りたいモジュール:").strip().lower()
-        if user_module in moduleinput:
-            for line in moduleinput[user_module]:
-                print(line)
-        elif user_module in user_finish:
-            print("わかりました。では困ったらまた呼び出してください!")
-            print("アプリを終了中...")
-            time.sleep(2)
-            sys.exit()
-        elif user_module == "モード切り替え":
-            ai_mode = ai_mode_switch()
-        elif user_module == "version" or user_please == "-v":
-            show_version()
-        elif user_module == "version --detailed":
-            show_version_detailed()
-        elif user_module == "help":
-            help_terminal()
-        else:
-            print("そのモジュールは用意されていません。お手数をおかけいたしますがご自分で検索をお願いいたします")
+        new_mode = application_main("知りたいモジュール: ", moduleinput, user_finish_list)
+        if new_mode:
+            ai_mode = new_mode
