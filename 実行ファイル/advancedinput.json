@@ -1,0 +1,22 @@
+{
+  "進捗バー": [
+    "進捗バーは以下のコードで作成できます。",
+    "def progress_bar(message,duration=2.0, steps=40):\n    print(message)\n    sys.stdout.write(\"[\")  # 左枠\n    sys.stdout.flush()\n    for i in range(steps):\n        time.sleep(duration / steps)\n        sys.stdout.write(\"■\")\n        sys.stdout.flush()\n    sys.stdout.write(\"]\")  # 右枠\n    sys.stdout.flush()\n    percent = int((i + 1) / steps * 100)\n    print(f\" {percent}%\")",
+    "これを表示したいなら：\nprogress_bar(\"任意のメッセージ\")",
+    "これらを実行するとこの作品の冒頭に出たような進捗バーが作れます"
+  ],
+  "time.sleep": [
+    "time.sleepは、進捗バーを作るのがめんどくさいときに、簡単に読み込みしているように見せることができます。以下のコードです。",
+    "print(\"examplemesseage\")\ntime.sleep(2)",
+    "注意点としてファイルの冒頭にimport timeを書き込んでおく必要があります。",
+    "これを実行すると読み込みしているように見せることができます。"
+  ],
+  "json": [
+    "jsonは、pyファイルの容量を大幅削減できるコード(というかモジュール)です。応用としてjsonファイルに説明を書いてそれを読み込むことができます。\n読み込ませるコードはこちら",
+    "with open(base_path / 'input.json', 'r', encoding='utf-8') as f:\n    exampleinput = json.load(f)",
+    "このコードでいうexampleinputという変数を関数に組み込むことで、inputでユーザーが打ち込んだ内容を表示させることができます。",
+    "補足:\njsonの書き方は以下のような形です",
+    "{\n  \"読み込ませたいもの\": [\n    \"説明など\"\n  ]  \n}",
+    "この前に、import jsonを打ち込んでおく必要があります。"
+  ]
+}
