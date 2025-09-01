@@ -1,14 +1,15 @@
 import time
 import sys
 import json
+from pathlib import Path
 
 enter_ai = ""
 enter_boot = ""
 
 def help_using():
     print("使い方:\n知りたいコードを入力するだけ!コードはアプリが解説してくれるからいくらでも使っちゃおう!")
-    print("モード説明：\n基礎文法コードモード コード番号1 登録されているキーワードの簡単な説明を聞ける。\n詳細説明モード コード番号2 登録されているすべてのキーワードの細かな説明が聞ける。\nモジュールモード コード番号3 モジュールに関する説明が聞ける。")
-    print("モード切り替えと入力すると、モードを変えられる。上記のコード番号のいずれかを入力すると、任意のモードに切り替えられる。")
+    print("モード説明：\n基礎文法コードモード コード番号1 登録されているキーワードの簡単な説明を聞ける。\n詳細説明モード コード番号2 登録されているすべてのキーワードの細かな説明が聞ける。\nモジュールモード コード番号3 モジュールに関する説明が聞ける。\n応用モード コード番号4 既存のコートを使ったより高度なプログラミングに関する説明が聞ける")
+    print("mode -cと入力すると、モードを変えられる。上記のコード番号のいずれかを入力すると、任意のモードに切り替えられる。")
 
 def help_keyword():
     print("対応キーワード一覧：")
@@ -20,16 +21,22 @@ def help_keyword_module():
     for modulekeyword in moduleinput.keys():
         print(f"{modulekeyword}")
 
+def help_keyword_advanced():
+    print("対応キーワード一覧")
+    for advancedkeyword in advancedinput.keys():
+        print(f"{advancedkeyword}")
+
 def help_command():
-    print("version\ncode.pyのバージョンを確認できるコマンド\n--detailed\nversionコマンドの横につけることでcode.pyの詳細が確認できるサブコマンド")
+    print("version\ncode.pyのバージョンを確認できるコマンド\n-d\nversionコマンドの横につけることでcode.pyの詳細が確認できるサブコマンド\nmode -c\n従来のようなモード切り替えを行えるコマンド。")
 
-with open('C:\\Users\\takumi\\PyTutorAI\\実行ファイル\\input.json', 'r', encoding='utf-8') as f:
+base_path = Path(__file__).resolve().parent
+
+with open(base_path / 'input.json', 'r', encoding='utf-8') as f:
     normalinput = json.load(f)
-with open('C:\\Users\\takumi\\PyTutorAI\\実行ファイル\\moduleinput.json', 'r', encoding='utf-8') as f:
+with open(base_path / 'moduleinput.json', 'r', encoding='utf-8') as f:
     moduleinput = json.load(f)
-
-def run():
-    time.sleep(0.2) 
+with open(base_path / 'advancedinput.json', 'r', encoding='utf-8') as f:
+    advancedinput = json.load(f)
 
 def progress_bar(duration=2.0, steps=40):
     print("code.pyを読み込み中..." )
@@ -45,6 +52,9 @@ def progress_bar(duration=2.0, steps=40):
     percent = int((i + 1) / steps * 100)
     print(f" {percent}%")
     print("読み込み完了")
+
+def run():
+    time.sleep(0.1)
 
 run()
 progress_bar()
@@ -110,6 +120,8 @@ while True:
         help_keyword()
     elif user_help == "help -k -m":
         help_keyword_module()
+    elif user_help == "help -k -a":
+        help_keyword_advanced()
     elif user_help == "help -c":
         help_command()
     else:

@@ -10,11 +10,11 @@ import subprocess
 from pathlib import Path
 
 def show_version():
-    this_py_version = "1.0.7"
+    this_py_version = "1.1.1"
     print(f"PytutorAI ver.{this_py_version}")
 
 def show_version_detailed():
-    this_py_version = "1.0.7"
+    this_py_version = "1.1.1"
     print(f"PytutorAI ver.{this_py_version}")
     print(f"Python Version: {sys.version}")
     print(f"OS: {platform.system()} {platform.release()} ({platform.architecture()[0]})")
