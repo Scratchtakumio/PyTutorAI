@@ -31,69 +31,29 @@ def help_command():
 
 base_path = Path(__file__).resolve().parent
 
-with open(base_path / 'input.json', 'r', encoding='utf-8') as f:
+with open(base_path / 'inputjson' / 'input.json', 'r', encoding='utf-8') as f:
     normalinput = json.load(f)
-with open(base_path / 'moduleinput.json', 'r', encoding='utf-8') as f:
+with open(base_path / 'inputjson' / 'moduleinput.json', 'r', encoding='utf-8') as f:
     moduleinput = json.load(f)
-with open(base_path / 'advancedinput.json', 'r', encoding='utf-8') as f:
+with open(base_path / 'inputjson' / 'advancedinput.json', 'r', encoding='utf-8') as f:
     advancedinput = json.load(f)
 
-def progress_bar(duration=2.0, steps=40):
-    print("code.pyを読み込み中..." )
+def progress_bar(message, duration=2.0, steps=40):
+    print(message)
     sys.stdout.write("[")  # 左枠
     sys.stdout.flush()
     for i in range(steps):
         time.sleep(duration / steps)
-        sys.stdout.write("■")
+        sys.stdout.write("=")
         sys.stdout.flush()
     sys.stdout.write("]")  # 右枠
     sys.stdout.flush()
-
     percent = int((i + 1) / steps * 100)
     print(f" {percent}%")
-    print("読み込み完了")
 
-def run():
-    time.sleep(0.1)
-
-run()
-progress_bar()
-
-def progress_bar(duration=2.0, steps=40):
-    print("help.pyを読み込み中...")
-    sys.stdout.write("[")  # 左枠
-    sys.stdout.flush()
-    for i in range(steps):
-        time.sleep(duration / steps)
-        sys.stdout.write("■")
-        sys.stdout.flush()
-    sys.stdout.write("]")  # 右枠
-    sys.stdout.flush()
-
-    percent = int((i + 1) / steps * 100)
-    print(f" {percent}%")
-    print("読み込み完了")
-
-run()
-progress_bar()
-
-def progress_bar(duration=2.0, steps=40):
-    print("helpコマンドを読み込み中...")
-    sys.stdout.write("[")  # 左枠
-    sys.stdout.flush()
-    for i in range(steps):
-        time.sleep(duration / steps)
-        sys.stdout.write("■")
-        sys.stdout.flush()
-    sys.stdout.write("]")  # 右枠
-    sys.stdout.flush()
-
-    percent = int((i + 1) / steps * 100)
-    print(f" {percent}%")
-    print("読み込み完了")
-
-run()
-progress_bar()
+progress_bar("application.pyを読み込み中...")
+progress_bar("help.pyを読み込み中...")
+progress_bar("コマンドを読み込み中...")
 
 print("helpコマンドターミナルを起動中...")
 time.sleep(1.5)
@@ -108,7 +68,7 @@ else:
     print("helpコマンドの横にサブコマンドをつけることでcode.pyの使用方法の確認や特定のキーワードが登録されているかが確認できるターミナルです。")
 
 while True:
-    user_help = input("command：").strip().lower()
+    user_help = input(">").strip().lower()
     if user_help == "help -e":
         print("わかりました。では困ったらまた呼び出してください!")
         print("ターミナルを終了中...")

@@ -74,13 +74,13 @@ def help_terminal():
 
 base_path = Path(__file__).resolve().parent
 
-with open(base_path / 'input.json', 'r', encoding='utf-8') as f:
+with open(base_path /'inputjson' / 'input.json', 'r', encoding='utf-8') as f:
     normalinput = json.load(f)
-with open(base_path / 'explanationsinput.json', 'r', encoding='utf-8') as f:
+with open(base_path /'inputjson' / 'explanationsinput.json', 'r', encoding='utf-8') as f:
     explanationinput = json.load(f)
-with open(base_path / 'moduleinput.json', 'r', encoding='utf-8') as f:
+with open(base_path /'inputjson' / 'moduleinput.json', 'r', encoding='utf-8') as f:
     moduleinput = json.load(f)
-with open(base_path / 'advancedinput.json', 'r', encoding='utf-8') as f:
+with open(base_path /'inputjson' / 'advancedinput.json', 'r', encoding='utf-8') as f:
     advancedinput = json.load(f)
 
 def application_main(prompt_text, input_dict, user_finish_list):
@@ -137,7 +137,7 @@ def progress_bar(message,duration=2.0, steps=40):
     sys.stdout.flush()
     for i in range(steps):
         time.sleep(duration / steps)
-        sys.stdout.write("■")
+        sys.stdout.write("=")
         sys.stdout.flush()
     sys.stdout.write("]")  # 右枠
     sys.stdout.flush()
@@ -184,6 +184,6 @@ while True:
             ai_mode = new_mode
 
     if ai_mode == "advanced":
-        new_mode = application_main("やってみたいこと: ", advancedinput, user_finish_list)
+        new_mode = application_main("知りたい応用コード: ", advancedinput, user_finish_list)
         if new_mode:
             ai_mode = new_mode
